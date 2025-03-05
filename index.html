@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memories Forever</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+        
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #fef3c7;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .gallery img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .gallery img:hover {
+            transform: scale(1.2);
+        }
+        .message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 20px;
+            color: #d97706;
+            margin-top: 20px;
+        }
+        .countdown {
+            font-size: 18px;
+            font-weight: bold;
+            color: #e11d48;
+            margin-top: 20px;
+        }
+        .hidden-message {
+            display: none;
+            font-size: 18px;
+            font-weight: bold;
+            color: #10b981;
+            margin-top: 20px;
+        }
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+        }
+        .slide {
+            display: none;
+            width: 100%;
+            border-radius: 10px;
+        }
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Memories Forever 💖</h2>
+        <p>Enter Password to Access</p>
+        <input type="password" id="password" placeholder="Enter Password">
+        <button onclick="checkPassword()">Enter</button>
+        <div id="content" style="display: none;">
+            <h3>Our Special Friendship: Sneha, Iram, and Pari</h3>
+            <p class="message">Sneha, only a few days are left before you step into a new journey. Iram, Pari, and I will miss you so much. 💕</p>
+            <p class="message">For us, just one more year left together... Time is flying, but our bond is forever. Let's make the most of it! 🥺</p>
+            <p class="message">From all the laughs, tears, and crazy moments – these memories will always be ours. Love you all! ❤️</p>
+            
+            <h3>Time Left with Sneha ⏳</h3>
+            <p class="countdown" id="countdown"></p>
+            
+            <h3>Memory Slideshow 📸</h3>
+            <div class="slideshow-container">
+                <img class="slide active" src="1.jpeg" alt="Memory 1">
+<img class="slide" src="2.jpeg" alt="Memory 2">
+<img class="slide" src="3.jpeg" alt="Memory 3">
+<img class="slide" src="4.jpeg" alt="Memory 4">
+<img class="slide" src="10.jpeg" alt="Memory 10">
+<img class="slide" src="11.jpeg" alt="Memory 11">
+<img class="slide" src="12.jpeg" alt="Memory 12">
+<img class="slide" src="13.jpeg" alt="Memory 13">
+<img class="slide" src="14.jpeg" alt="Memory 14">
+<img class="slide" src="15.jpeg" alt="Memory 15">
+<img class="slide" src="16.jpeg" alt="Memory 16">
+            </div>
+            
+            <h3>Photo Gallery 📸</h3>
+            <div class="gallery" id="gallery">
+                <img src="5.jpeg" alt="Memory 5">
+<img src="6.jpeg" alt="Memory 6">
+<img src="7.jpeg" alt="Memory 7">
+<img src="8.jpeg" alt="Memory 8">
+<img src="9.jpeg" alt="Memory 9">
+<img src="17.jpeg" alt="Memory 17">
+<img src="18.jpeg" alt="Memory 18">
+<img src="19.jpeg" alt="Memory 19">
+            </div>
+            
+            <button onclick="revealMessage()">Click for a Surprise</button>
+            <p class="hidden-message" id="hidden-message">No matter where life takes us, we will always have these beautiful memories together! 💕</p>
+            
+            <h3 style="color: #ff1493;">💖 Secret Message 💖</h3>
+            <p class="hidden-message" id="love-message" style="display: none;">I love you all so much! Our friendship is the most precious thing ever! 💞</p>
+            <button onclick="revealLoveMessage()">Click to Reveal Love</button>
+        </div>
+    </div>
+    
+    <script>
+        function checkPassword() {
+            let pass = document.getElementById("password").value;
+            if (pass === "shaily") { 
+                document.getElementById("content").style.display = "block";
+                document.getElementById("password").style.display = "none";
+                document.querySelector("button").style.display = "none";
+            } else {
+                alert("Incorrect password!");
+            }
+        }
+        
+        function revealMessage() {
+            document.getElementById("hidden-message").style.display = "block";
+        }
+        
+        function revealLoveMessage() {
+            document.getElementById("love-message").style.display = "block";
+        }
+        
+        function countdownTimer() {
+            const eventDate = new Date("2025-06-01").getTime();
+            setInterval(() => {
+                let now = new Date().getTime();
+                let timeLeft = eventDate - now;
+                let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                document.getElementById("countdown").innerText = days + " days left";
+            }, 1000);
+        }
+        countdownTimer();
+        
+        function startSlideshow() {
+            let index = 0;
+            const slides = document.querySelectorAll(".slide");
+            setInterval(() => {
+                slides.forEach(slide => slide.classList.remove("active"));
+                slides[index].classList.add("active");
+                index = (index + 1) % slides.length;
+            }, 2000);
+        }
+        startSlideshow();
+    </script>
+</body>
+</html>
